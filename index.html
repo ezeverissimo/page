@@ -8,7 +8,7 @@
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="is-preload">
-		<audio autoplay loop>
+		<audio id="myAudio" loop>
 			<source src="music/those-eyes.mp3" type="audio/mpeg">
 			Seu navegador não suporta a tag de áudio.
 		</audio>
@@ -17,6 +17,7 @@
 
 				<!-- Intro -->
 					<div id="intro">
+						<button id="playButton">Play</button>
 						<h1>Para<br />
 						Isabel</h1>
 						<p>Queria expressar ao menos 1% do que sinto por você.<br />
@@ -55,7 +56,6 @@
 										Não esperava encontrar alguém que cativasse mais os meus olhos do que o Pregão.
 									</p>
 								</header>
-								<!-- <a href="#" class="image main"><img src="images/pic01.jpg" alt="" /></a> -->
 							</article>
 
 						<!-- Posts -->
@@ -173,6 +173,27 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script>
+				// Função para iniciar a música
+				function playMusic() {
+					const audio = document.getElementById("myAudio");
+					console.log(audio)
+					audio.play();
+				}
+			
+				// Verifica se a música já foi iniciada nesta sessão
+				const isMusicPlayed = sessionStorage.getItem("musicPlayed");
+				if (!isMusicPlayed) {
+					playMusic(); // Se não, inicia a música
+					sessionStorage.setItem("musicPlayed", true); // E armazena o estado na sessão
+				}
+			
+				// Adiciona um listener para o botão de "Play"
+				document.getElementById("playButton").addEventListener("click", function() {
+					playMusic();
+				});
+			</script>
+			
 
 	</body>
 </html>
